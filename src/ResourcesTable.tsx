@@ -98,19 +98,23 @@ const ResourcesTable: React.FC<ResourcesTableProps> = ({ resources, selectedReso
           </Button>
         ),
         sortingFn: (rowA, rowB) => getType(rowA.original.id).localeCompare(getType(rowB.original.id)),
-        cell: ({ getValue }) => getType(getValue<ResourceId>()),
+        cell: ({ getValue }) => <span className="text-table-muted">{getType(getValue<ResourceId>())}</span>,
       },
       {
         accessorKey: 'first_seen_at',
         header: `First Seen (${TZ_OFFSET})`,
         sortingFn: 'datetime',
-        cell: ({ getValue }) => <span className="text-nowrap">{new Date(getValue<string>()).toLocaleString()}</span>,
+        cell: ({ getValue }) => (
+          <span className="text-table-muted text-nowrap">{new Date(getValue<string>()).toLocaleString()}</span>
+        ),
       },
       {
         accessorKey: 'last_seen_at',
         header: `Last Seen (${TZ_OFFSET})`,
         sortingFn: 'datetime',
-        cell: ({ getValue }) => <span className="text-nowrap">{new Date(getValue<string>()).toLocaleString()}</span>,
+        cell: ({ getValue }) => (
+          <span className="text-table-muted text-nowrap">{new Date(getValue<string>()).toLocaleString()}</span>
+        ),
       },
     ],
     initialState: { sorting: [{ id: 'id', desc: false }] },

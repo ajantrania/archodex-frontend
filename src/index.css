@@ -28,6 +28,8 @@
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
 
+  --color-table-muted: var(--table-muted);
+
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
 
@@ -47,8 +49,10 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  --shadow-lg-dark: 0 10px 15px -3px rgba(255, 255, 255, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
-  --shadow-2xl-dark: 0 25px 50px -12px rgb(255 255 255 / 0.25);
+  --shadow-lg-dark: 0 10px 15px -3px rgba(255, 255, 255, 0.01), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --shadow-2xl-dark-1: 0 25px 50px -12px rgb(255 255 255 / 0.1);
+  --shadow-2xl-dark: 0 0 0 4px var(--color-dark-base), 0 0 0 6.5px var(--color-palette-7);
+  --color-hover: var(--hover);
 
   --resource-title-height: 46px;
   --env-badge-size: 20px;
@@ -87,6 +91,8 @@
   --color-palette-13-inherited: hsl(117.5, 39%, 86%);
   --color-palette-14-inherited: hsl(140, 39%, 86%);
   --color-palette-15-inherited: hsl(162.5, 39%, 86%);
+
+  --color-query-graph-bg: var(--color-dark-base);
 }
 
 /*
@@ -130,6 +136,7 @@
     --secondary-foreground: black;
     --muted: var(--color-neutral-100);
     --muted-foreground: var(--color-neutral-500);
+    --table-muted: var(--color-neutral-600);
     --accent: var(--color-neutral-100);
     --accent-foreground: black;
     --destructive: hsl(0 100% 30%);
@@ -138,31 +145,34 @@
     --input: var(--color-neutral-200);
     --ring: #ee847b;
     --radius: 0.5rem;
+    --hover: #ee847b;
 
     --node-title-text: var(--primary);
   }
   .dark {
-    --sidebar-background: var(--color-neutral-950);
+    --base: rgba(33, 33, 33, 1);
+
+    --sidebar-background: var(--color-dark-base);
     --sidebar-foreground: white;
     --sidebar-primary: white;
-    --sidebar-primary-foreground: var(--color-neutral-950);
     --sidebar-accent: var(--color-neutral-800);
     --sidebar-accent-foreground: white;
     --sidebar-border: var(--color-neutral-800);
     --sidebar-ring: #ee847b;
 
-    --background: black;
+    --background: var(--base);
     --foreground: white;
-    --card: black;
-    --card-foreground: black;
-    --popover: black;
+    --card: var(--base);
+    --card-foreground: var(--base);
+    --popover: var(--base);
     --popover-foreground: white;
     --primary: #ee847b;
-    --primary-foreground: black;
+    --primary-foreground: var(--base);
     --secondary: var(--color-neutral-900);
     --secondary-foreground: white;
-    --muted: var(--color-neutral-900);
+    --muted: oklch(0.4 0 0);
     --muted-foreground: var(--color-neutral-400);
+    --table-muted: #dddddd;
     --accent: var(--color-neutral-900);
     --accent-foreground: white;
     --destructive: hsl(0 100% 30%);
@@ -171,6 +181,7 @@
     --input: var(--color-neutral-800);
     --ring: #ee847b;
     --radius: 0.5rem;
+    --hover: var(--color-palette-7);
 
     --node-title-text: var(--color-foreground);
   }

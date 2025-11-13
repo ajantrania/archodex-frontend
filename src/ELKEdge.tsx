@@ -15,14 +15,24 @@ type ELKEdge = Edge<ELKEdgeData, 'elk'>;
 
 const edgeClassName = (selected = false, eventChainHovered = false) => {
   // Stroke colors must be !important to override react-flow's default styles
-  const classes = ['stroke-foreground', 'dark:stroke-primary'];
+  const classes = [];
+
+  if (!eventChainHovered && !selected) {
+    classes.push('opacity-40');
+  }
+
+  if (eventChainHovered) {
+    classes.push('stroke-hover', 'stroke-[2px]');
+  } else {
+    classes.push('stroke-foreground', 'dark:stroke-primary');
+  }
 
   if (selected) {
-    classes.push('stroke-primary', 'stroke-[2px]');
-  } else if (eventChainHovered) {
-    classes.push('opacity-40', 'stroke-[2px]');
-  } else {
-    classes.push('opacity-40');
+    classes.push('stroke-primary', 'stroke-[2px]', 'opacity-80');
+
+    if (eventChainHovered) {
+      classes.push('stroke-[3px]', 'opacity-100');
+    }
   }
 
   return classes.join(' ');
@@ -58,6 +68,7 @@ const ELKEdge = ({ id, selected, data, markerEnd }: EdgeProps<ELKEdge>) => {
       <BaseEdge id={id} className={edgeClassName(selected, data.eventChainHovered)} path={path} markerEnd={markerEnd} />
       <EdgeLabelRenderer>
         <div
+          // className="absolute z-1 p-[2px] text-[10px] bg-query-graph-bg"
           className="absolute z-1 p-[2px] text-[10px] bg-background"
           style={{
             transform: `translate(-50%, -50%) translate(${String(label.x)}px, ${String(calculateClosestPathMidpoint(label, points))}px)`,
